@@ -1,0 +1,12 @@
+{
+  "resource_pack_name": "tree_nests",
+  "texture_name": "atlas.terrain",
+  "texture_data": {
+    "tree_nest_hole": {
+      "textures": "textures/tree_nests/blocks/hole"
+    },
+    "tree_nest_inhabitant": {
+      "textures": "textures/tree_nests/blocks/eyes"
+    }
+  }
+}

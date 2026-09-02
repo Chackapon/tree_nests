@@ -1,0 +1,119 @@
+{
+  "format_version": "1.26.40",
+  "minecraft:block": {
+    "description": {
+      "identifier": "tree_nests:nest",
+      "states": {
+        "treenests:is_empty": [false, true],
+        "treenests:inhabitant": ["empty", "mystery"]
+      },
+
+      "menu_category": {
+        "category": "construction"
+      },
+
+      "traits": {
+        "minecraft:placement_direction": {
+          "enabled_states": [
+            "minecraft:cardinal_direction"
+          ]
+        }
+      }
+    },
+
+    "components": {
+      "minecraft:geometry": {
+        "identifier": "geometry.tree_nest",
+        "bone_visibility": {
+          "inhabitant": "q.block_state('treenests:inhabitant') != 'empty'"
+        }
+      },
+
+      "minecraft:material_instances": {
+        "hole": {
+          "texture": "tree_nest_hole",
+          "render_method": "blend"
+        },
+        "inhabitant": {
+          "texture": "tree_nest_inhabitant",
+          "render_method": "blend"
+        }
+      },
+
+      "minecraft:collision_box": {
+        "origin": [-8, 0, -8],
+        "size": [16, 16, 0]
+      },
+
+      "minecraft:selection_box": {
+        "origin": [-8, 0, -8],
+        "size": [16, 16, 1]
+      },
+
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.5
+      },
+
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 3
+      },
+
+    },
+
+    "permutations": [
+
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      },
+
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              180,
+              0
+            ]
+          }
+        }
+      },
+
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              270,
+              0
+            ]
+          }
+        }
+      },
+
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              90,
+              0
+            ]
+          }
+        }
+      }
+
+    ]
+  }
+}
