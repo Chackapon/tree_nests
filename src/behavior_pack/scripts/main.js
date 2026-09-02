@@ -43,8 +43,8 @@ function world_random( x, z ) {
 
 
 // @@@@@@@@@@@@ Important constsants
-const NEST_BLOCK = "treenests:nest";
-const LOOT_TABLE = "treenest/hole";
+const NEST_BLOCK = "tree_nests:nest";
+const LOOT_TABLE = "tree_nests/nest";
 
 const INTERACT_ITEM = "minecraft:brush";
 const DEFAULT_ITEM = "minecraft:stick";
@@ -56,7 +56,7 @@ const INHABITANT_CHANCE = 0.25; // [0,1] float
 
 // @@@@@@@ Data storage
 world.afterEvents.worldLoad.subscribe((event) => {
-	loadWorldData( "treenests", processed_chunks );
+	loadWorldData( "tree_nests", processed_chunks );
 });
 
 
@@ -73,7 +73,7 @@ world.afterEvents.playerInteractWithBlock.subscribe((event) => {
 	if( block.typeId !== NEST_BLOCK || item.typeId !== INTERACT_ITEM ) {
 		return;
 	}
-	if ( block.permutation.getState("treenests:is_empty") === true ) return;
+	if ( block.permutation.getState("tree_nests:is_empty") === true ) return;
 	
 	
 	// Get the front coordinates of the nest
@@ -86,7 +86,7 @@ world.afterEvents.playerInteractWithBlock.subscribe((event) => {
 	
 	
 	// If no mob is in the nest
-	if ( block.permutation.getState("treenests:inhabitant") === "empty" ) {
+	if ( block.permutation.getState("tree_nests:inhabitant") === "empty" ) {
 	
 		// Generate item from loot table
 		// todo: consider making more than one
@@ -112,11 +112,11 @@ world.afterEvents.playerInteractWithBlock.subscribe((event) => {
 		];
 		const random_entity = inhabitant_list[ Math.floor( world_random( block.location.x, block.location.z ) * inhabitant_list.length ) ];
 		block.dimension.spawnEntity( random_entity, spawn_location );
-		block.setPermutation( block.permutation.withState("treenests:inhabitant", "empty") );
+		block.setPermutation( block.permutation.withState("tree_nests:inhabitant", "empty") );
 	}
 	
 	
-	block.setPermutation( block.permutation.withState("treenests:is_empty", true) ); //todo: maybe different texture? also more states, maybe enchanted, bird inside, etc
+	block.setPermutation( block.permutation.withState("tree_nests:is_empty", true) ); //todo: maybe different texture? also more states, maybe enchanted, bird inside, etc
 	
 	// Apply damage to brush item
 	const container = player.getComponent("minecraft:inventory").container;
@@ -139,8 +139,12 @@ const direction_vector = {
 	west: { x: 1, y: 0, z: 0 } 
 };
 
-// Detect a pillar or log blocks
-// returns array of blocks valid for nest placement
+
+/**
+ * Detect a pillar of log blocks
+ * @param top_block
+ * @returns {*[]} array of blocks valid for nest placement
+ */
 function detectTrunk( top_block ) {
 	const dimension = top_block.dimension
 	let block_it = top_block;
@@ -175,16 +179,35 @@ function detectTrunk( top_block ) {
 	return logs;
 }
 
+/**
+ *
+ * @param location
+ * @param chance
+ * @returns {boolean}
+ */
 function randomWorldChance( location, chance ) {
 	return world_random( location.x, location.z ) / HOLLOW_CHANCE < chance;
 }
 
+
+/**
+ *
+ * @param x
+ * @param z
+ * @returns {string}
+ */
 export function randomCardinalDirection( x, z ) { 
 	const directions = [ "north", "south", "east", "west" ]; 
 	return directions[Math.floor( (world_random(x,z)/HOLLOW_CHANCE) * directions.length)];
 }
 
 
+/**
+ * Places a nest block on the randomly picked side of a log block
+ * @param dimension
+ * @param trunk_coords location member of a block object
+ * @returns {*}
+ */
 function placeNest( dimension, trunk_coords ) {
 	const rand_dir = randomCardinalDirection( trunk_coords.x, trunk_coords.z ); 
 	const offset = direction_vector[rand_dir];
@@ -206,13 +229,20 @@ function placeNest( dimension, trunk_coords ) {
 	if ( randomWorldChance(trunk_coords, INHABITANT_CHANCE) ) {
 		//todo: roll a random mob
 		//todo: make tag driven
-		const permutation = nest_block.permutation.withState( "treenests:inhabitant", "mystery" );
+		const permutation = nest_block.permutation.withState( "tree_nests:inhabitant", "mystery" );
 		nest_block.setPermutation( permutation );
 	}
 		
 	return nest_block;
 }
 
+
+/**
+ *
+ * @param dimension
+ * @param chunkX
+ * @param chunkZ
+ */
 function scanForTrees(dimension, chunkX, chunkZ) {
     const startX = chunkX * 16;
     const startZ = chunkZ * 16;
@@ -243,6 +273,10 @@ function scanForTrees(dimension, chunkX, chunkZ) {
 
 const processed_chunks = new Set();
 // Check if chunk if new
+
+/**
+ *
+ */
 system.runInterval(() => {
     for (const player of world.getAllPlayers()) {
     	const chunkX = Math.floor(player.location.x / 16);
@@ -256,7 +290,7 @@ system.runInterval(() => {
 					
 				if (!processed_chunks.has( key )) { 
 					try {
-						saveWorldData( "treenests", processed_chunks ); //access error on teleportation here
+						saveWorldData( "tree_nests", processed_chunks ); //access error on teleportation here
 						scanForTrees(player.dimension, chunkX+x, chunkZ+z); 
 						processed_chunks.add( key );
 					}

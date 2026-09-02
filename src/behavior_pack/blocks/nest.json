@@ -1,11 +1,11 @@
 {
-  "format_version": "1.26.40",
+  "format_version": "1.21.50",
   "minecraft:block": {
     "description": {
       "identifier": "tree_nests:nest",
       "states": {
-        "treenests:is_empty": [false, true],
-        "treenests:inhabitant": ["empty", "mystery"]
+        "tree_nests:is_empty": [false, true],
+        "tree_nests:inhabitant": ["empty", "mystery"]
       },
 
       "menu_category": {
@@ -25,7 +25,7 @@
       "minecraft:geometry": {
         "identifier": "geometry.tree_nest",
         "bone_visibility": {
-          "inhabitant": "q.block_state('treenests:inhabitant') != 'empty'"
+          "inhabitant": "q.block_state('tree_nests:inhabitant') != 'empty'"
         }
       },
 
@@ -56,7 +56,7 @@
 
       "minecraft:destructible_by_explosion": {
         "explosion_resistance": 3
-      },
+      }
 
     },
 
