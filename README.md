@@ -6,7 +6,7 @@ This addon adds randomly spawning nests that can either contain loot or an inhab
 
 ## Preface
 
-I was inspired to make this addon by one of my favourite small mods for Java Edition - [] by [], which adds randomly generated tree holes with loots. While developing my version the implementation and features changed quite a bit, so I it's not a direct port. Still, wanted to shout out this adventure mod that consitantly makes exploration fun in my modpacks:)
+I was inspired to make this addon by one of my favourite small mods for Java Edition - [Tree Hollows](https://modrinth.com/mod/tree-hollows) by [Reoseah](https://modrinth.com/user/Reoseah), which adds randomly generated tree holes with loots. While developing my version the implementation and features changed quite a bit, so I it's not a direct port. Still, wanted to shout out this adventure mod that consitantly makes exploration fun in my modpacks:)
 
 ## Features
 
@@ -49,4 +49,4 @@ This element of the addon might change in the future, as I'm still thinking of i
 * Nest doesn't drop anything and has wrong break particles and sounds
 * Nest doesn't break off when the log it's on is destroyed
 
-If you notice any other bugs, please let me know of them on the [GitHub Issues]([https://](https://github.com/Chackapon/tree_nests/issues)) page!
+If you notice any other bugs, please let me know of them on the [GitHub Issues](https://github.com/Chackapon/tree_nests/issues) page!
