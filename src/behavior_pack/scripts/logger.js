@@ -1,10 +1,12 @@
 const ADDON_NAME = "Tree Nests";
 
+import { DEBUG_MODE} from "./mod_config";
+
 
 export function log( str ) {
-    console.log(`[${ADDON_NAME}]`, str);
+    if (DEBUG_MODE) console.log(`[${ADDON_NAME}]`, str);
 }
 
 export function warn( str ) {
-    console.log(`[${ADDON_NAME}]`, str);
+    if (DEBUG_MODE) console.log(`[${ADDON_NAME}]`, str);
 }
