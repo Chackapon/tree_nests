@@ -1,6 +1,6 @@
-# Tree Nests [Bedrock 26.40 Addon]
+# Tree Nests [Bedrock Addon]
 
-![Minecraft Version](https://img.shields.io/badge/Minecraft_Bedrock-26.40-brightgreen)
+![Minecraft Version](https://img.shields.io/badge/Minecraft_Bedrock-1.21.50-brightgreen)
 
 This addon adds randomly spawning nests that can either contain loot or an inhabitant:)
 
