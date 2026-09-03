@@ -12,5 +12,5 @@ export const DEBUG_MODE = false;
 
 
 // USER SETTINGS
-export const HOLLOW_CHANCE = 0.03; // Chance for a tree to generate with a nest
-export const INHABITANT_CHANCE = 0.15; // Chance for a nest to contain mob
+export const HOLLOW_CHANCE = 0.05; // Chance for a tree to generate with a nest
+export const INHABITANT_CHANCE = 0.25; // Chance for a nest to contain mob
