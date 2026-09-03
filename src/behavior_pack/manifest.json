@@ -1,42 +1,64 @@
 {
-    "format_version": 2,
-    "header": {
-        "description": "Spice up your explorations by adding sporadic nests in trees!",
-        "name": "Tree Nests [BP]",
-        "uuid": "df8c8069-ed65-4bf5-9806-5ecedcd6e5fa",
-        "version": [ 1, 0, 0 ],
-        "min_engine_version": [ 1, 26, 40 ]
+  "format_version": 2,
+  "header": {
+    "description": "Spice up your explorations by adding sporadic nests in trees!",
+    "name": "Tree Nests [BP]",
+    "uuid": "df8c8069-ed65-4bf5-9806-5ecedcd6e5fa",
+    "version": [
+      1,
+      0,
+      2
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      40
+    ]
+  },
+  "modules": [
+    {
+      "description": "Data module",
+      "type": "data",
+      "uuid": "9a6b7ed7-69ba-4340-8e28-925d1b9611c0",
+      "version": [
+        1,
+        0,
+        2
+      ]
     },
-    "modules": [
-        {
-            "description": "Data module",
-            "type": "data",
-            "uuid": "9a6b7ed7-69ba-4340-8e28-925d1b9611c0",
-            "version": [ 1, 0, 0 ]
-        },
-        {
-            "description": "Scripts module",
-            "type": "script",
-			"language": "javascript",
-			"entry": "scripts/main.js",
-            "uuid": "92c951eb-bed7-4dd3-8bd3-a10267afa4c8",
-            "version": [ 1, 0, 0 ]
-        }
-    ],
-    "dependencies": [
-        {
-            "uuid": "4d760473-0e33-461e-a570-8108305db6ed",
-            "version": [ 1, 0, 0 ]
-        }, 
-        {
-            "module_name": "@minecraft/server",
-            "version": "2.9.0"
-        }
-    ],
-    "metadata": {
-        "authors": ["Chackapon"],
-        "license": "MIT",
-        "url": "http://www.google.com",
-        "product_type": "addon"
+    {
+      "description": "Scripts module",
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "92c951eb-bed7-4dd3-8bd3-a10267afa4c8",
+      "version": [
+        1,
+        0,
+        2
+      ]
     }
+  ],
+  "dependencies": [
+    {
+      "uuid": "4d760473-0e33-461e-a570-8108305db6ed",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.9.0"
+    }
+  ],
+  "metadata": {
+    "authors": [
+      "Chackapon"
+    ],
+    "license": "MIT",
+    "url": "http://www.google.com",
+    "product_type": "addon"
+  }
 }

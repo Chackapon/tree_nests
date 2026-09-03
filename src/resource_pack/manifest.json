@@ -1,25 +1,41 @@
 {
-    "format_version": 2,
-    "header": {
-        "description": "Spice up your explorations by adding sporadic nests in trees!",
-        "name": "Tree Nests [RP]",
-        "uuid": "4d760473-0e33-461e-a570-8108305db6ed",
-        "version": [ 1, 0, 0 ],
-        "min_engine_version": [ 1, 26, 40 ]
-    },
-    "modules": [
-        {
-            "description": "Resources module",
-            "type": "resources",
-            "uuid": "402f5ecb-f4c3-457b-89ac-44f57a666490",
-            "version": [ 1, 0, 0 ]
-        }
+  "format_version": 2,
+  "header": {
+    "description": "Spice up your explorations by adding sporadic nests in trees!",
+    "name": "Tree Nests [RP]",
+    "uuid": "4d760473-0e33-461e-a570-8108305db6ed",
+    "version": [
+      1,
+      0,
+      0
     ],
-    "capabilities": [ "pbr" ],
-    "metadata": {
-        "authors": ["Chackapon"],
-        "license": "MIT",
-        "url": "http://www.google.com",
-        "product_type": "addon"
+    "min_engine_version": [
+      1,
+      26,
+      40
+    ]
+  },
+  "modules": [
+    {
+      "description": "Resources module",
+      "type": "resources",
+      "uuid": "402f5ecb-f4c3-457b-89ac-44f57a666490",
+      "version": [
+        1,
+        0,
+        0
+      ]
     }
+  ],
+  "capabilities": [
+    "pbr"
+  ],
+  "metadata": {
+    "authors": [
+      "Chackapon"
+    ],
+    "license": "MIT",
+    "url": "http://www.google.com",
+    "product_type": "addon"
+  }
 }
