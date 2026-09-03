@@ -12,21 +12,32 @@ I was inspired to make this addon by one of my favourite small mods for Java Edi
 
 The main addition of this addon are randomly generated tree nests. They're generated once for each chunk and their placement is dependant on the world seed, so in this regard they behave like any other vanilla minecraft structure generation!
 
+Tree nests can generate on **ANY** tree - including modded! The only requirement is that their item ID ends with "_log".
 
-Tree nests can generate on ANY tree - including modded! The only requirement is that their item ID ends with "_log".
+![IMG_0830.jpeg](assets/IMG_0830.jpeg)
 
+Nests have a default **5%** chance to appear on each tree. That value can be changed in the "mod_config.js":
+![Screenshot20260903at001314.png](assets/mod_config.png)
 
-Nests have a default X% chance to appear on each tree. That value can be changed in the "mod_config.js"
-![Screenshot20260903at001314.png](assets/Screenshot 2026-09-03 at 00.13.14.png)
+So what do you do with those tree nests? In part due to how Script API works, and in part from a desire to give underused vanilla items more purpose, I made it so you have to use brush to interact with nests. If you right click with it on a nest you'll get some loot. After that the nest becomes empty - you can only interact with it **once**.
 
-So what do you do with those tree nests? In part due to how Script API works, and in part from a desire to give underused vanilla items more purpose, I made it so you have to use brush to interact with nests. If you right click with it on a nest you'll get some loot. After that the nest becomes empty - you can only interact with it once.
+![brush_normal.jpeg](assets/brush_normal.jpeg)
 
 Here's the result of 10 rolls of the nest's loot table:
 
-The loot is supposed to not be too overpowered, but to also encourage you to interact with the nests. I'll be tinkering with the loot table in the future, feedback is very appreciated!
+![loot_example.png](assets/loot_example.png)
 
-But what's this - whose eyes are those?
-Every nest has a 25% (configurable in "mod_config.json") chance to have a mob inside of them! If you brush a nest with an inhabitant in it, it will jump out of it.
+The loot is not supposed to be too overpowered, but should also encourage you to interact with the nests. I'll be tinkering with the loot table in the future, feedback is very appreciated!
+
+Wait, what's this - whose eyes are those?
+
+![eyes.jpeg](assets/eyes.jpeg)
+
+Every nest has a **25%** (configurable in "mod_config.json") chance to have a mob inside of them! If you brush a nest with an inhabitant in it, it will jump out of it.
+
+![brush_zyjatko1.png](assets/brush_zyjatko1.png)
+
+![brush_zyjatko2.png](assets/brush_zyjatko2.png)
 
 This element of the addon might change in the future, as I'm still thinking of ideas to make it more interesting. Right now chickens and parrots can live in nests. Feel free to share your ideas with me:D
 
