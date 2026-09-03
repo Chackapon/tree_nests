@@ -49,4 +49,4 @@ This element of the addon might change in the future, as I'm still thinking of i
 * Nest doesn't drop anything and has wrong break particles and sounds
 * Nest doesn't break off when the log it's on is destroyed
 
-If you notice any other bugs, please let me know of them! [github plug].
+If you notice any other bugs, please let me know of them on the [GitHub Issues]([https://](https://github.com/Chackapon/tree_nests/issues)) page!
