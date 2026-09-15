@@ -1,7 +1,6 @@
 /**
  * Functions that handle saving and loading of world dynamic properties
  */
-//meow
 import { world, } from "@minecraft/server";
 import { log, warn } from "./logger.js";
 /**

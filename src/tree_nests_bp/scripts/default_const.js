@@ -7,7 +7,6 @@ export const DEFAULT_ITEM = "minecraft:stick";
 export const MOD_NAMESPACE = "tree_nests";
 export const INHABITANT_STATE_NAME = "inhabitant";
 export const EMPTY_STATE_NAME = "is_empty";
-
 export const INHABITANT_MOB_TYPES = [
     "minecraft:parrot",
     "minecraft:chicken"

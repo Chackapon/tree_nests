@@ -1,6 +1,8 @@
 import { DEFAULT_HOLLOW_CHANCE, DEFAULT_INHABITANT_CHANCE, MOD_NAMESPACE, } from "./default_const";
-import { system, world, CommandPermissionLevel, } from "@minecraft/server";
+import { system, CommandPermissionLevel, } from "@minecraft/server";
 import { ModalFormData } from "@minecraft/server-ui";
+import { DEBUG_MODE, setDebugMode } from "./logger";
+import { saveWorldData } from "./world_data_save";
 export let HOLLOW_CHANCE = DEFAULT_HOLLOW_CHANCE;
 export let INHABITANT_CHANCE = DEFAULT_INHABITANT_CHANCE;
 export function setHollowChance(chance) {
@@ -17,6 +19,7 @@ export function registerSettingsCommand() {
             permissionLevel: CommandPermissionLevel.Host, //must be non opener,
             cheatsRequired: false
         }, (origin) => {
+            const player = origin.sourceEntity;
             system.run(() => {
                 let settings_form = new ModalFormData();
                 settings_form.title("Tree Nests Settings");
@@ -34,17 +37,15 @@ export function registerSettingsCommand() {
                 settings_form.toggle("Debug logging", {
                     defaultValue: DEBUG_MODE
                 });
-                settings_form.show(origin.sourceEntity).then(result => {
-                    if (result.canceled)
+                settings_form.show(player).then(result => {
+                    if (!result || result.canceled)
                         return;
-                    //origin.sourceEntity.sendMessage(`${JSON.stringify(result.formValues)}`);
-                    HOLLOW_CHANCE = result.formValues[1] / 100;
+                    setHollowChance((result.formValues?.at(1) ?? 0) / 100);
                     saveWorldData(`${MOD_NAMESPACE}:hollow_chance`, HOLLOW_CHANCE);
-                    INHABITANT_CHANCE = result.formValues[2] / 100;
+                    setInhabitantChance((result.formValues?.at(2) ?? 0) / 100);
                     saveWorldData(`${MOD_NAMESPACE}:inhabitant_chance`, INHABITANT_CHANCE);
-                    setDebugMode(result.formValues[5]);
-                    world.setDynamicProperty(`${MOD_NAMESPACE}:debug_mode`, result.formValues[5]);
-                    // origin.sourceEntity.sendMessage(`${DEBUG_MODE}`);
+                    setDebugMode(result.formValues?.at(5));
+                    saveWorldData(`${MOD_NAMESPACE}:debug_mode`, DEBUG_MODE);
                 });
             });
             /*return {

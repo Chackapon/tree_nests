@@ -5,7 +5,7 @@ import { loadWorldData, saveWorldData } from './world_data_save.js';
 import { world_random } from "./random";
 // @@@@@@@@@@@@ Important constants
 // TODO actually those should just be the default values, actual settings must be stored as dymamic world properties
-import { NEST_BLOCK, LOOT_TABLE, INTERACT_ITEM, DEFAULT_ITEM, MOD_NAMESPACE, INHABITANT_STATE_NAME, EMPTY_STATE_NAME, } from "./default_const.js";
+import { NEST_BLOCK, LOOT_TABLE, INTERACT_ITEM, DEFAULT_ITEM, MOD_NAMESPACE, INHABITANT_STATE_NAME, EMPTY_STATE_NAME, INHABITANT_MOB_TYPES, } from "./default_const.js";
 import { HOLLOW_CHANCE, INHABITANT_CHANCE, registerSettingsCommand, setHollowChance, setInhabitantChance } from "./settings";
 // @@@@@@ Settings
 registerSettingsCommand();
@@ -14,15 +14,21 @@ world.afterEvents.worldLoad.subscribe((event) => {
     log("DEBUG MODE: ON");
     loadWorldData(`${MOD_NAMESPACE}:chunks`, processed_chunks);
     //saveWorldData( `${MOD_NAMESPACE}:`, "test");
-    setDebugMode(loadWorldData(`${MOD_NAMESPACE}:debug_mode`, HOLLOW_CHANCE) ?? false);
+    setDebugMode(loadWorldData(`${MOD_NAMESPACE}:debug_mode`, HOLLOW_CHANCE));
     setHollowChance(loadWorldData(`${MOD_NAMESPACE}:hollow_chance`, HOLLOW_CHANCE));
     setInhabitantChance(loadWorldData(`${MOD_NAMESPACE}:inhabitant_chance`, INHABITANT_CHANCE));
 });
 // @@@@@@@@@@@@ Interaction with block
 world.afterEvents.playerInteractWithBlock.subscribe((event) => {
     const player = event.player;
+    if (!player)
+        return;
     const block = event.block;
+    if (!block)
+        return;
     const item = event.itemStack;
+    if (!item)
+        return;
     // Nest can only be interacted with once
     if (block.typeId !== NEST_BLOCK || item.typeId !== INTERACT_ITEM) {
         return;
@@ -39,10 +45,11 @@ world.afterEvents.playerInteractWithBlock.subscribe((event) => {
     // If no mob is in the nest
     if (block.permutation.getState(`${MOD_NAMESPACE}:${INHABITANT_STATE_NAME}`) === "empty") {
         // Generate item from loot table
-        // todo: consider making more than one
         const loot_table = world.getLootTableManager().getLootTable(LOOT_TABLE);
+        if (!loot_table)
+            return;
         let loot = world.getLootTableManager().generateLootFromTable(loot_table); //handle unregistered items somewhere here
-        if (loot[0] === undefined) {
+        if (loot?.at(0) === undefined) {
             loot = [new ItemStack(DEFAULT_ITEM, 1)]; //handl
         }
         // Spawn item in the world
@@ -52,30 +59,29 @@ world.afterEvents.playerInteractWithBlock.subscribe((event) => {
     }
     else {
         // Spawn nest inhabitant in the world
-        //todo: get the state and summon THAT mob
-        const inhabitant_list = [
-            "minecraft:parrot",
-            "minecraft:chicken"
-        ];
-        const random_entity = inhabitant_list[Math.floor(world_random(block.location.x, block.location.z) * inhabitant_list.length)];
+        const random_entity = INHABITANT_MOB_TYPES[Math.floor(world_random(block.location.x, block.location.z) * INHABITANT_MOB_TYPES.length)];
         block.dimension.spawnEntity(random_entity, spawn_location);
         block.setPermutation(block.permutation.withState(`${MOD_NAMESPACE}:${INHABITANT_STATE_NAME}`, "empty"));
     }
     block.setPermutation(block.permutation.withState(`${MOD_NAMESPACE}:${EMPTY_STATE_NAME}`, true)); //todo: maybe different texture? also more states, maybe enchanted, bird inside, etc
     // Apply damage to brush item
-    const container = player.getComponent("minecraft:inventory").container;
+    const container = player.getComponent("minecraft:inventory")?.container;
     const slot = player.selectedSlotIndex;
-    const brush_item = container.getItem(slot);
+    const brush_item = container?.getItem(slot);
+    if (!brush_item)
+        return;
     const durability = brush_item.getComponent("minecraft:durability");
+    if (!durability)
+        return;
     durability.damage = durability.damage + 1;
-    container.setItem(slot, brush_item);
+    container?.setItem(slot, brush_item);
 });
 // @@@@@@@@@@@@ Block spawning
 const direction_vector = {
-    north: { x: 0, y: 0, z: 1 },
-    south: { x: 0, y: 0, z: -1 },
-    east: { x: -1, y: 0, z: 0 },
-    west: { x: 1, y: 0, z: 0 }
+    "north": { x: 0, y: 0, z: 1 },
+    "south": { x: 0, y: 0, z: -1 },
+    "east": { x: -1, y: 0, z: 0 },
+    "west": { x: 1, y: 0, z: 0 }
 };
 /**
  * Detect a pillar of log blocks
@@ -97,20 +103,23 @@ function detectTrunk(top_block) {
                 z: block_it.location.z + vector.z
             });
             //todo: make a set of allowed blocks + tag system if possible for blocks
-            if (neighbor.typeId !== "minecraft:air" && neighbor.typeId !== "minecraft:vine")
+            if (neighbor?.typeId !== "minecraft:air" && neighbor?.typeId !== "minecraft:vine")
                 flagged = true; // or not leaves
         }
         if (!flagged) {
             logs.push(block_it);
         }
-        block_it = dimension.getBlock({
+        let next_block = dimension.getBlock({
             x: block_it.location.x,
             y: block_it.location.y - 1,
             z: block_it.location.z
         });
+        if (!next_block)
+            continue;
+        block_it = next_block;
     }
     if (logs.length > 1)
-        logs.pop(0);
+        logs.shift();
     return logs;
 }
 /**
@@ -124,13 +133,12 @@ function randomWorldChance(location, chance) {
 }
 /**
  *
- * @param x
- * @param z
  * @returns {string}
+ * @param location
  */
-export function randomCardinalDirection(x, z) {
+export function randomCardinalDirection(location) {
     const directions = ["north", "south", "east", "west"];
-    const rolled_chance = world_random(x, z) / HOLLOW_CHANCE;
+    const rolled_chance = world_random(location.x, location.z) / HOLLOW_CHANCE;
     return directions[Math.floor(rolled_chance * directions.length)];
 }
 /**
@@ -141,8 +149,9 @@ export function randomCardinalDirection(x, z) {
  */
 function placeNest(dimension, trunk_coords) {
     const rolled_chance = world_random(trunk_coords.x, trunk_coords.z) / HOLLOW_CHANCE;
-    const rand_dir = randomCardinalDirection(trunk_coords.x, trunk_coords.z);
-    const offset = direction_vector[rand_dir];
+    const rand_dir = randomCardinalDirection(trunk_coords);
+    const key = rand_dir;
+    const offset = direction_vector[key];
     const nest_coords = {
         x: trunk_coords.x + offset.x,
         y: trunk_coords.y + offset.y,
@@ -150,6 +159,8 @@ function placeNest(dimension, trunk_coords) {
     };
     dimension.setBlockType(nest_coords, NEST_BLOCK);
     const nest_block = dimension.getBlock(nest_coords);
+    if (!nest_block)
+        return;
     //if (!newBlock) { return undefined; }
     // Pick random facing direction for the nest
     const permutation = BlockPermutation.resolve(NEST_BLOCK, { "minecraft:cardinal_direction": rand_dir });

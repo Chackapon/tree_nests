@@ -1,4 +1,5 @@
 // @@@@@@@@@@@@ Random number generator world current world seed
+import { world } from "@minecraft/server";
 function random2(a, b) {
     let h = Number(world.seed);
     h ^= Math.imul(a | 0, 0x85ebca6b);

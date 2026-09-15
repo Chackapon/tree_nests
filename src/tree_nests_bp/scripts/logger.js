@@ -1,7 +1,7 @@
 import { ADDON_NAME } from "./default_const";
 export var DEBUG_MODE = false; //TODO export this var from main maybe??
 export function setDebugMode(mode) {
-    DEBUG_MODE = mode;
+    DEBUG_MODE = mode ?? false;
 }
 export function log(str) {
     if (DEBUG_MODE)

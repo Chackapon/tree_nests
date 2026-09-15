@@ -22,6 +22,14 @@
     },
 
     "components": {
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.2
+      },
+      "minecraft:destruction_particles": {
+        "particle_count": 30,
+        "texture": "oak_log"
+      },
+      "minecraft:loot": "loot_tables/tree_nests/nest_drop.json",
       "minecraft:geometry": {
         "identifier": "geometry.tree_nest",
         "bone_visibility": {
@@ -48,10 +56,6 @@
       "minecraft:selection_box": {
         "origin": [-8, 0, -8],
         "size": [16, 16, 1]
-      },
-
-      "minecraft:destructible_by_mining": {
-        "seconds_to_destroy": 0.5
       },
 
       "minecraft:destructible_by_explosion": {
