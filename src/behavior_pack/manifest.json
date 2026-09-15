@@ -6,8 +6,8 @@
     "uuid": "df8c8069-ed65-4bf5-9806-5ecedcd6e5fa",
     "version": [
       1,
-      0,
-      4
+      1,
+      0
     ],
     "min_engine_version": [
       1,
@@ -22,8 +22,8 @@
       "uuid": "9a6b7ed7-69ba-4340-8e28-925d1b9611c0",
       "version": [
         1,
-        0,
-        4
+        1,
+        0
       ]
     },
     {
@@ -34,8 +34,8 @@
       "uuid": "92c951eb-bed7-4dd3-8bd3-a10267afa4c8",
       "version": [
         1,
-        0,
-        4
+        1,
+        0
       ]
     }
   ],
@@ -51,6 +51,10 @@
     {
       "module_name": "@minecraft/server",
       "version": "2.9.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.1.0"
     }
   ],
   "metadata": {

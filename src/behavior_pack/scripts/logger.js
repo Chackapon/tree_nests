@@ -1,12 +1,13 @@
-const ADDON_NAME = "Tree Nests";
-
-import { DEBUG_MODE} from "./mod_config";
-
-
-export function log( str ) {
-    if (DEBUG_MODE) console.log(`[${ADDON_NAME}]`, str);
+import { ADDON_NAME } from "./default_const";
+export var DEBUG_MODE = false; //TODO export this var from main maybe??
+export function setDebugMode(mode) {
+    DEBUG_MODE = mode;
 }
-
-export function warn( str ) {
-    if (DEBUG_MODE) console.log(`[${ADDON_NAME}]`, str);
+export function log(str) {
+    if (DEBUG_MODE)
+        console.log(`[${ADDON_NAME}]`, str);
+}
+export function warn(str) {
+    if (DEBUG_MODE)
+        console.log(`[${ADDON_NAME}]`, str);
 }

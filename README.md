@@ -4,6 +4,8 @@
 
 This addon adds randomly spawning nests that can either contain loot or an inhabitant:)
 
+<span style="color:#E03E2D;">**THIS ADDON IS ACHIEVEMENT FRIENDLY!**</span>
+
 ## Preface
 
 I was inspired to make this addon by one of my favourite small mods for Java Edition - [Tree Hollows](https://modrinth.com/mod/tree-hollows) by [Reoseah](https://modrinth.com/user/Reoseah), which adds randomly generated tree holes with loots. While developing my version the implementation and features changed quite a bit, so I it's not a direct port. Still, wanted to shout out this adventure mod that consitantly makes exploration fun in my modpacks:)
@@ -16,7 +18,7 @@ Tree nests can generate on **ANY** tree - including modded! The only requirement
 
 ![IMG_0830.jpeg](assets/IMG_0830.jpeg)
 
-Nests have a default **5%** chance to appear on each tree. That value can be changed in the "mod_config.js":
+Nests have a default **5%** chance to appear on each tree. That value can be changed in the "default_const.js":
 ![Screenshot20260903at001314.png](assets/mod_config.png)
 
 So what do you do with those tree nests? In part due to how Script API works, and in part from a desire to give underused vanilla items more purpose, I made it so you have to use brush to interact with nests. If you right click with it on a nest you'll get some loot. After that the nest becomes empty - you can only interact with it **once**.
