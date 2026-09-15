@@ -13,4 +13,4 @@ export const INHABITANT_MOB_TYPES = [
 ];
 // USER SETTINGS
 export const DEFAULT_HOLLOW_CHANCE = 0.05; // Chance for a tree to generate with a nest
-export const DEFAULT_INHABITANT_CHANCE = 1; // Chance for a nest to contain mob
+export const DEFAULT_INHABITANT_CHANCE = 0.25; // Chance for a nest to contain mob
