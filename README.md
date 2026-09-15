@@ -49,7 +49,7 @@ This element of the addon might change in the future, as I'm still thinking of i
 * Nests don't generate on big mushrooms and nether trees
 * Nests don't generate on 2x2 trees (and to be honest, idk if I am going to fix that)
 * Loot and mobs spawn to the side of the nest
-* Nest doesn't drop anything and has wrong break particles and sounds
+* Nest has wrong break particles and sounds
 * Nest doesn't break off when the log it's on is destroyed
 
 If you notice any other bugs, please let me know of them on the [GitHub Issues](https://github.com/Chackapon/tree_nests/issues) page!
