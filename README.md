@@ -16,30 +16,31 @@ The main addition of this addon are randomly generated tree nests. They're gener
 
 Tree nests can generate on **ANY** tree - including modded! The only requirement is that their item ID ends with "_log".
 
-![IMG_0830.jpeg](assets/IMG_0830.jpeg)
+![IMG_0830.jpeg](https://github.com/Chackapon/tree_nests/raw/main/assets/IMG_0830.jpeg)
 
-Nests have a default **5%** chance to appear on each tree. That value can be changed in the "default_const.js":
-![Screenshot20260903at001314.png](assets/mod_config.png)
+Nests have a default **5%** chance to appear on each tree. That value can be changed in the mod settings. To open them use the custom command "/tree_nests:settings":
+![Screenshot20260903at001314.png](https://github.com/Chackapon/tree_nests/raw/main/assets/settings_command.png)
+![Screenshot20260903at001314.png](https://github.com/Chackapon/tree_nests/raw/main/assets/settings_menu.png)
 
 So what do you do with those tree nests? In part due to how Script API works, and in part from a desire to give underused vanilla items more purpose, I made it so you have to use brush to interact with nests. If you right click with it on a nest you'll get some loot. After that the nest becomes empty - you can only interact with it **once**.
 
-![brush_normal.jpeg](assets/brush_normal.jpeg)
+![brush_normal.jpeg](https://github.com/Chackapon/tree_nests/raw/main/assets/brush_normal.jpeg)
 
 Here's the result of 10 rolls of the nest's loot table:
 
-![loot_example.png](assets/loot_example.png)
+![loot_example.png](https://github.com/Chackapon/tree_nests/raw/main/assets/loot_example.png)
 
 The loot is not supposed to be too overpowered, but should also encourage you to interact with the nests. I'll be tinkering with the loot table in the future, feedback is very appreciated!
 
 Wait, what's this - whose eyes are those?
 
-![eyes.jpeg](assets/eyes.jpeg)
+![eyes.jpeg](https://github.com/Chackapon/tree_nests/raw/main/assets/eyes.jpeg)
 
 Every nest has a **25%** (configurable in "mod_config.json") chance to have a mob inside of them! If you brush a nest with an inhabitant in it, it will jump out of it.
 
-![brush_zyjatko1.png](assets/brush_zyjatko1.png)
+![brush_zyjatko1.png](https://github.com/Chackapon/tree_nests/raw/main/assets/brush_zyjatko1.png)
 
-![brush_zyjatko2.png](assets/brush_zyjatko2.png)
+![brush_zyjatko2.png](https://github.com/Chackapon/tree_nests/raw/main/assets/brush_zyjatko2.png)
 
 This element of the addon might change in the future, as I'm still thinking of ideas to make it more interesting. Right now chickens and parrots can live in nests. Feel free to share your ideas with me:D
 
