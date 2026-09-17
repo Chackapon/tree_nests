@@ -1,6 +1,6 @@
 # Tree Nests [Bedrock Addon]
 
-![Minecraft Version](https://img.shields.io/badge/Minecraft_Bedrock-1.21.50-brightgreen)
+![Minecraft Version](https://img.shields.io/badge/Minecraft_Bedrock-1.21.90-brightgreen)
 
 This addon adds randomly spawning nests that can either contain loot or an inhabitant:)
 
@@ -46,10 +46,11 @@ This element of the addon might change in the future, as I'm still thinking of i
 
 ## Known bugs
 
-* Nests don't generate on big mushrooms and nether trees
-* Nests don't generate on 2x2 trees (and to be honest, idk if I am going to fix that)
-* Loot and mobs spawn to the side of the nest
-* Nest has wrong break particles and sounds
-* Nest doesn't break off when the log it's on is destroyed
+- [ ] Nests don't generate on big mushrooms and nether trees
+- [ ] Nests don't generate on 2x2 trees (and to be honest, idk if I am going to fix that)
+- [ ] Loot and mobs spawn to the side of the nest
+- [x] Nest has wrong break particles _[Fixed in v.1.1]_
+- [ ] Nest has wrong  sounds
+- [ ] Nest doesn't break off when the log it's on is destroyed
 
 If you notice any other bugs, please let me know of them on the [GitHub Issues](https://github.com/Chackapon/tree_nests/issues) page!

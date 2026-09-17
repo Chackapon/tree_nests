@@ -2,6 +2,6 @@ ADDON_NAME: "Tree Nests"
 ADDON_DESCRIPTION: "Spice up your explorations by adding sporadic nests in trees!"
 
 RP_VERSION: [ 1, 0, 0 ]
-BP_VERSION: [ 1, 1, 0 ]
+BP_VERSION: [ 1, 1, 1 ]
 
 SEPARATE_EXPORT: false
